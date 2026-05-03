@@ -73,6 +73,14 @@ public class EscolaService {
         repository.save(escola);
     }
 
+    @Transactional
+    public void reativar(Long id) {
+        Escola escola = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Escola não encontrada com id: " + id));
+        escola.setStatus(true);
+        
+        repository.save(escola);
+    }
+
 
     // DTO → ENTITY
     private Escola converterParaEntity(EscolaDTO dto){

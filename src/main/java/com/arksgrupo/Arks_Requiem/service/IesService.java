@@ -60,6 +60,16 @@ public class IesService {
         Ies ies = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("IES não encontrada com id: " + id));
 
         ies.setStatus(false);
+        
+        repository.save(ies);
+    }
+
+    @Transactional
+    public void reativar(Long id) {
+        Ies ies = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("IES não encontrada com id: " + id));
+        ies.setStatus(true);
+    
+        repository.save(ies);
     }
 
 

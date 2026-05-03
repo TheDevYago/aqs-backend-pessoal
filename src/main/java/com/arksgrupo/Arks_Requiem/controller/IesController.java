@@ -52,8 +52,15 @@ public class IesController {
 
     // DESATIVAR
     @PatchMapping("/{id}/inativar") // [AJUSTE] é mais recomendado
-    public ResponseEntity<Void> desativar(@PathVariable Long id){
+    public ResponseEntity<Void> desativar(@PathVariable("id") Long id){
         service.desativar(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/reativar")
+    public ResponseEntity<Void> reativar(@PathVariable("id") Long id){
+        service.reativar(id);
 
         return ResponseEntity.noContent().build();
     }
