@@ -19,7 +19,7 @@ private String coordenador;
 private LocalDateTime dataCadastro;
 private boolean status;
 @ManyToOne
-@JoinColumn(name = "escolaId")
+@JoinColumn(name = "escolaid")
 private Escola escola;
 
     public Curso(){

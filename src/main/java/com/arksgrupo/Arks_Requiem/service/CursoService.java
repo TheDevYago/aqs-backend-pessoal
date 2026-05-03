@@ -21,6 +21,7 @@ public class CursoService {
     @Autowired
     private EscolaRepository escolaRepository;
 
+    @Transactional
     public CursoDTO salvar(CursoDTO dto){
         Curso curso = converterParaEntity(dto);
         curso.setDataCadastro(LocalDateTime.now());
@@ -58,7 +59,16 @@ public class CursoService {
         Curso curso = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado com id: " + id));
         
         curso.setStatus(false);
+        repository.save(curso);
     }
+
+    @Transactional
+    public void reativar(Long id) {
+        Curso curso = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado"));
+
+        curso.setStatus(true);
+        repository.save(curso);
+}
 
 
     // DTO → ENTITY
@@ -87,6 +97,7 @@ public class CursoService {
         dto.setCoordenadorCurso(curso.getCoordenador());
         dto.setStatus(curso.getStatus());
         dto.setEscolaId(curso.getEscola().getId());
+        dto.setNomeEscola(curso.getEscola().getNome());
         dto.setDataCadastro(curso.getDataCadastro());
 
         return dto;

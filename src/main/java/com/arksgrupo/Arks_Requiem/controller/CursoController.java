@@ -35,8 +35,14 @@ public class CursoController {
     }
 
     @PatchMapping("/{id}/inativar")
-    public ResponseEntity<Void> inativar(@PathVariable Long id) {
+    public ResponseEntity<Void> inativar(@PathVariable("id") Long id) {
         service.inativar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/reativar")
+    public ResponseEntity<Void> reativar(@PathVariable("id") Long id) {
+        service.reativar(id);
         return ResponseEntity.noContent().build();
     }
 }

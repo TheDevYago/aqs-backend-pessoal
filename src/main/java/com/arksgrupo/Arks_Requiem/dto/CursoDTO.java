@@ -11,6 +11,7 @@ public class CursoDTO {
     private String coordenadorCurso;
     private LocalDateTime dataCadastro;
     private Boolean status = true;
+    private String nomeEscola;
 
 
     // GETTERS E SETTERS
@@ -60,7 +61,7 @@ public class CursoDTO {
         this.coordenadorCurso = coordenadorCurso;
     }
 
-    public LocalDateTime getdataCadastro(){
+    public LocalDateTime getDataCadastro(){
         return dataCadastro;
     }
     public void setDataCadastro(LocalDateTime dataCadastro){
@@ -72,5 +73,13 @@ public class CursoDTO {
     }
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getNomeEscola() {
+        return nomeEscola;
+    }
+
+    public void setNomeEscola(String nomeEscola) {
+        this.nomeEscola = nomeEscola;
     }
 }
