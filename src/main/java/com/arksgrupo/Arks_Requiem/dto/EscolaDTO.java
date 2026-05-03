@@ -9,6 +9,8 @@ public class EscolaDTO {
     private Long iesId;
     private LocalDateTime dataCadastro;
     private boolean status;
+    private String nomeCoordenador;
+    private String nomeIes;
 
     public EscolaDTO(){}
 
@@ -72,6 +74,22 @@ public class EscolaDTO {
     public void setStatus(boolean status) {
         this.status = status;
 
+    }
+
+    public String getNomeCoordenador() {
+        return nomeCoordenador;
+    }
+
+    public void setNomeCoordenador(String nomeCoordenador) {
+        this.nomeCoordenador = nomeCoordenador;
+    }
+
+    public String getNomeIes() {
+        return nomeIes;
+    }
+
+    public void setNomeIes(String nomeIes) {
+        this.nomeIes = nomeIes;
     }
     
 }

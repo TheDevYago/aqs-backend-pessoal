@@ -48,14 +48,14 @@ public class EscolaController{
 
     // INATIVAR
     @PatchMapping("/{id}/inativar") // [AJUSTE] é mais recomendado
-    public ResponseEntity<Void> inativar(@PathVariable Long id){
+    public ResponseEntity<Void> inativar(@PathVariable("id") Long id){
         service.inativar(id);
         return ResponseEntity.noContent().build();
     }
 
     //REATIVAR
     @PatchMapping("/{id}/reativar")
-    public ResponseEntity<Void> reativar(@PathVariable Long id) {
+    public ResponseEntity<Void> reativar(@PathVariable("id") Long id) {
         service.reativar(id);
         return ResponseEntity.noContent().build();
     }

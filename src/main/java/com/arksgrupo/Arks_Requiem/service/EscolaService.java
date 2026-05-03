@@ -104,16 +104,18 @@ public class EscolaService {
         dto.setNome(escola.getNome());
         if (escola.getCoordenador() != null) {
             dto.setCoordenadorId(escola.getCoordenador().getMatricula());
+            dto.setNomeCoordenador(escola.getCoordenador().getNomeCompleto());
         } else {
             dto.setCoordenadorId(null);
         }
         if (escola.getIes() != null) {
             dto.setIesId(escola.getIes().getId());
+            dto.setNomeIes(escola.getIes().getNome());
         } else {
             dto.setIesId(null);
         }
         dto.setDataCadastro(escola.getDataCadastro());
-        dto.setStatus(Boolean.TRUE.equals(dto.getStatus()));
+        dto.setStatus(Boolean.TRUE.equals(escola.getStatus()));
 
         return dto;
 
