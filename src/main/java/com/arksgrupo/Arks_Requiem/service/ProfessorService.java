@@ -76,6 +76,14 @@ public class ProfessorService {
         repository.save(professor);
     }
 
+    @Transactional
+    public void reativar(Long matricula) {
+        Professor professor = repository.findById(matricula).orElseThrow(() -> new ResourceNotFoundException("Professor não encontrado"));
+        professor.setStatus(true);
+        repository.save(professor);
+
+    }
+
     private ProfessorDTO converterParaDTO(Professor professor) {
         ProfessorDTO dto = new ProfessorDTO();
         dto.setMatricula(professor.getMatricula());

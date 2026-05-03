@@ -53,8 +53,15 @@ public class ProfessorController {
 
     // Inativar professor
     @PatchMapping("/{matricula}/inativar")
-    public ResponseEntity<Void> inativar (@PathVariable Long matricula){
+    public ResponseEntity<Void> inativar (@PathVariable("matricula") Long matricula){
         service.inativar(matricula);
+        return ResponseEntity.noContent().build();
+    }
+
+    //reativar professor
+    @PatchMapping("/{matricula}/reativar")
+    public ResponseEntity<Void> reativar (@PathVariable("matricula") Long matricula){
+        service.reativar(matricula);
         return ResponseEntity.noContent().build();
     }
 }
