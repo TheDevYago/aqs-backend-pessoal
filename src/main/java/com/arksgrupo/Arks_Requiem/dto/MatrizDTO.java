@@ -10,6 +10,8 @@ public class MatrizDTO {
     private Boolean status;
     private Long cursoId;
     private LocalDateTime dataCadastro;
+    private String cursoNome;
+    private int qtdDisciplinas;
 
     public Long getId() {
         return id;
@@ -56,6 +58,22 @@ public class MatrizDTO {
 
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public int getQtdDisciplinas() {
+        return qtdDisciplinas;
+    }
+
+    public void setQtdDisciplinas(int qtdDisciplinas) {
+        this.qtdDisciplinas = qtdDisciplinas;
+    }
+
+    public String getCursoNome() {
+        return cursoNome;
+    }
+
+    public void setCursoNome(String cursoNome) {
+        this.cursoNome = cursoNome;
     }
 }
 

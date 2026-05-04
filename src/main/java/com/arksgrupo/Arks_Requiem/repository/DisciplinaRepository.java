@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
+
+    int countByMatrizId(Long id);
     // Aqui o Spring já cria o CRUD básico automaticamente
 }

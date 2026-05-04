@@ -74,6 +74,14 @@ public class MatrizService {
         repository.save(matriz);
     }
 
+    @Transactional
+    public void reativar(Long id){
+        Matriz matriz = repository.findById(id).orElseThrow(() -> new RuntimeException("Matriz não encontrada com id: " + id));
+
+        matriz.setStatus(true);
+        repository.save(matriz);
+    }
+
 
     // VINCULAR DISCIPLINAS À MATRIZ
     public void vincularDisciplinas(Long matrizId, List<Long> disciplinasIds){
@@ -111,9 +119,8 @@ public class MatrizService {
 
         matriz.setNome(dto.getNome());
         matriz.setDescricao(dto.getDescricao());
-        matriz.setStatus(dto.getStatus());
-        matriz.setCurso(cursoRepository.findById(dto.getCursoId()).orElseThrow());
-
+        matriz.setStatus(dto.getStatus() != null ? dto.getStatus() : true);
+        matriz.setCurso(cursoRepository.findById(dto.getCursoId()).orElseThrow(() -> new RuntimeException("Curso não encontrado")));
         return matriz;
     }
 
@@ -127,7 +134,11 @@ public class MatrizService {
         dto.setDescricao(matriz.getDescricao());
         dto.setStatus(matriz.getStatus());
         dto.setCursoId(matriz.getCurso().getId());
+        dto.setCursoNome(matriz.getCurso().getDescricao());
         dto.setDataCadastro( matriz.getDataCadastro());
+
+        int contagem = disciplinaRepository.countByMatrizId(matriz.getId());
+        dto.setQtdDisciplinas(contagem);
 
         return dto;
     }

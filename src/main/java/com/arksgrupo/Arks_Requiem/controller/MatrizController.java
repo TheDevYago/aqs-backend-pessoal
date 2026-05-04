@@ -15,8 +15,8 @@ public class MatrizController {
     private MatrizService service;
 
     // Endpoint para criar matriz vinculada a um curso
-    @PostMapping("/curso/{cursoId}")
-    public MatrizDTO criar( @PathVariable MatrizDTO dto) {
+    @PostMapping
+    public MatrizDTO criar(@RequestBody MatrizDTO dto) {
         return service.salvar(dto);
     }
 
@@ -44,6 +44,12 @@ public class MatrizController {
     @PatchMapping("/{id}/inativar") // [AJUSTE]
     public ResponseEntity<Void> inativar(@PathVariable Long id){
         service.inativar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/reativar")
+    public ResponseEntity<Void> reativar(@PathVariable Long id){
+        service.reativar(id);
         return ResponseEntity.noContent().build();
     }
 }

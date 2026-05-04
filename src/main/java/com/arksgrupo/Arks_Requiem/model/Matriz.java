@@ -13,12 +13,12 @@ public class Matriz {
     
     private String nome;
     private String descricao;
-    @Column(name = "dataCadastro")
+    @Column(name = "datacadastro")
     private LocalDateTime dataCadastro;
     private boolean status = true;
 
     @ManyToOne
-    @JoinColumn(name = "cursoId")
+    @JoinColumn(name = "cursoid")
     private Curso curso;
 
 
