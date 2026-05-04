@@ -2,10 +2,13 @@ package com.arksgrupo.Arks_Requiem.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.arksgrupo.Arks_Requiem.dto.RelatorioFiltroDTO;
 import com.arksgrupo.Arks_Requiem.model.Relatorio;
 import com.arksgrupo.Arks_Requiem.service.RelatorioService;
 
@@ -16,6 +19,13 @@ public class RelatorioController {
     @Autowired
     private RelatorioService service;
 
+    @GetMapping("/download/{tipoId}")
+    public ResponseEntity<byte[]> downloadRelatorio(
+            @PathVariable String tipoId,
+            @ModelAttribute RelatorioFiltroDTO filtro) { // Agrupa os params no DTO[cite: 13]
+        return service.gerarArquivoRelatorio(tipoId, filtro);
+    }
+    
     @PostMapping
     public ResponseEntity<Relatorio> criar(@RequestBody Relatorio relatorio) {
         Relatorio salvo = service.salvaRelatorio(relatorio);
@@ -36,16 +46,8 @@ public class RelatorioController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{tipoId}")
-    public ResponseEntity<byte[]> downloadRelatorio(
-        @PathVariable String tipoId,
-        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
-        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim,
-        @RequestParam String semestre,
-        @RequestParam String formato) {
     
-    return service.gerarArquivoRelatorio(tipoId, dataInicio, dataFim, semestre, formato);
-}
+        
 
     @PutMapping("/{id}")
     public ResponseEntity<Relatorio> atualizar(@PathVariable Long id, @RequestBody Relatorio relatorio) {
