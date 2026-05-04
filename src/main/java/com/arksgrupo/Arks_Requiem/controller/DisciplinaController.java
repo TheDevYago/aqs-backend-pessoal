@@ -46,4 +46,10 @@ public class DisciplinaController {
         service.inativar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/reativar")
+    public ResponseEntity<Void> reativar(@PathVariable Long id){
+        service.reativar(id);
+        return ResponseEntity.noContent().build();
+    }
 }

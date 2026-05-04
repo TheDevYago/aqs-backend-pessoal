@@ -73,6 +73,13 @@ public class DisciplinaService {
         repository.save(disciplina);
     }
 
+    @Transactional
+    public void reativar (Long id) {
+        Disciplina disciplina = repository.findById(id).orElseThrow();
+        disciplina.setStatus(true);
+        repository.save(disciplina);
+    }
+
     private Disciplina converterParaEntity(DisciplinaDTO dto){
 
         Disciplina disciplina = new Disciplina();
@@ -99,8 +106,10 @@ public class DisciplinaService {
         dto.setPreRequisitosStr(disciplina.getPreRequisitosStr());
         dto.setDataCadastro(disciplina.getDataCadastro());
         dto.setEscolaId(disciplina.getEscola().getId());
+        dto.setEscolaNome(disciplina.getEscola().getNome());
         if(disciplina.getMatriz() != null){
             dto.setMatrizId(disciplina.getMatriz().getId());
+            dto.setMatrizNome(disciplina.getMatriz().getNome());
         }
         return dto;
     }

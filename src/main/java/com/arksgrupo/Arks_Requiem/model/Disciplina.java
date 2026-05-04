@@ -13,18 +13,18 @@ public class Disciplina {
 
     private String sigla;
     private String descricao;
-    @Column(name = "cargaHoraria")
+    @Column(name = "cargahoraria", nullable = false)
     private Integer cargaHoraria;
     private boolean status;
     private String preRequisitosStr; // foi adicionado o preRequisitosStr para salvar o que está sendo enviado para o Angular
     private LocalDateTime dataCadastro;
     @ManyToOne
-    @JoinColumn(name = "escolaId")
+    @JoinColumn(name = "escolaid")
     private Escola escola;
 
     // Essa oparte é sobre o relacionamento com a ManyToOne muitas disciplinas pertencem a uma Matriz
     @ManyToOne
-    @JoinColumn(name = "matrizId")
+    @JoinColumn(name = "matrizid")
     private Matriz matriz;
 
     public Disciplina() {

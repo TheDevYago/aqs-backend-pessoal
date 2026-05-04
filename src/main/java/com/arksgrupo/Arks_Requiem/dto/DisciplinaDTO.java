@@ -12,6 +12,8 @@ public class DisciplinaDTO {
     private LocalDateTime dataCadastro;
     private Long escolaId;
     private Long matrizId;
+    private String escolaNome;
+    private String matrizNome;
 
 
     public Long getId() {
@@ -83,6 +85,22 @@ public class DisciplinaDTO {
 
     public void setMatrizId(long matrizId) {
         this.matrizId = matrizId;
+    }
+
+    public String getEscolaNome() {
+        return escolaNome;
+    }
+
+    public void setEscolaNome(String escolaNome) {
+        this.escolaNome = escolaNome;
+    }
+
+    public String getMatrizNome() {
+        return matrizNome;
+    }
+
+    public void setMatrizNome(String matrizNome) {
+        this.matrizNome = matrizNome;
     }
 
 
